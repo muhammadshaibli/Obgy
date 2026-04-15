@@ -1,0 +1,19 @@
+{
+  "name": "obgy-gynecology-tutor",
+  "version": "1.0.0",
+  "description": "Gynecology Tutor — Kasr Al-Ainy",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "app.js"
+    ]
+  }
+}
