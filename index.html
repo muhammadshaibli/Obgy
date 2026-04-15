@@ -564,9 +564,12 @@ header::before {
   <!-- API Key configuration -->
   <div class="api-key-banner" id="apiKeyBanner">
     <label>🔑 Anthropic API Key</label>
-    <input type="password" class="api-key-input" id="apiKeyInput" placeholder="sk-ant-…  (stored locally in your browser)" autocomplete="off">
+    <input type="password" class="api-key-input" id="apiKeyInput" placeholder="sk-ant-…  (stored locally in your browser)" autocomplete="new-password">
     <button class="api-key-save" onclick="saveApiKey()">Save</button>
     <span class="api-key-status unset" id="apiKeyStatus">Not set</span>
+  </div>
+  <div style="font-size:0.72rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace;padding:0 4px;margin-top:-10px">
+    ⚠️ Your key is stored only in your browser's localStorage. Never use this app on untrusted or shared devices.
   </div>
 
   <!-- Topic selector -->
@@ -1051,9 +1054,10 @@ function attachQuizInteractivity() {
 }
 
 function findAnswerText(optionBtn) {
-  // Look for "Answer:" text after options
+  // Look for "Answer:" text after options (limit to 20 siblings to prevent infinite loop)
   let next = optionBtn.nextElementSibling;
-  while (next && !next.textContent.includes('Answer:')) {
+  let count = 0;
+  while (next && !next.textContent.includes('Answer:') && count++ < 20) {
     next = next.nextElementSibling;
   }
   return next ? next.textContent : null;
